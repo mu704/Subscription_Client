@@ -1,7 +1,7 @@
 import React from "react";
 
 const CancelPage = () => {
-  return <div>CancelPage</div>;
+  return <div>Your Payment was cancelled</div>;
 };
 
 export default CancelPage;

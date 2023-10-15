@@ -10,27 +10,35 @@ const SUBSCRIPTION_PRICE = {
 
 const HomePage = () => {
   const subscribePremium = async () => {
-    const response = await axios.post(
-      `${BACKEND_URL}/payments/create-checkout-session`,
-      {
-        priceId: SUBSCRIPTION_PRICE.PREMIUM,
-      }
-    );
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/payments/create-checkout-session`,
+        {
+          priceId: SUBSCRIPTION_PRICE.PREMIUM,
+        }
+      );
 
-    const checkoutSessionLocation = response.headers.get("Location");
-    window.location.href = checkoutSessionLocation;
+      const stipeCheckoutUrl = response.data.url;
+      window.location.href = stipeCheckoutUrl;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const subscribeBasic = async () => {
-    const response = await axios.post(
-      `${BACKEND_URL}/payments/create-checkout-session`,
-      {
-        priceId: SUBSCRIPTION_PRICE.BASIC,
-      }
-    );
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/payments/create-checkout-session`,
+        {
+          priceId: SUBSCRIPTION_PRICE.BASIC,
+        }
+      );
 
-    const checkoutSessionLocation = response.headers.get("Location");
-    window.location.href = checkoutSessionLocation;
+      const stipeCheckoutUrl = response.data.url;
+      window.location.href = stipeCheckoutUrl;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
